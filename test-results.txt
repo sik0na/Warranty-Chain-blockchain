@@ -1,0 +1,47 @@
+
+
+  WarrantyChain
+    Deployment
+      ✔ sets the shop and service center
+      ✔ does not allow the shop to also be the service center
+    Products
+      ✔ shop can register a product
+      ✔ other people cannot register products
+      ✔ does not allow the same serial number twice
+    Warranties
+      ✔ shop can issue a warranty to a customer
+      ✔ cannot issue a warranty for a product that does not exist
+      ✔ cannot issue two warranties for the same product
+      ✔ cannot issue a warranty with a past expiry date
+      ✔ only the shop can issue warranties
+      ✔ warranty is active before expiry and expired after
+    Claims
+      ✔ owner can submit a claim while the warranty is active
+      ✔ someone who is not the owner cannot submit a claim
+      ✔ cannot submit a claim after the warranty expires
+      ✔ cannot submit a second claim while one is still open
+      ✔ cannot submit an empty description
+    Service center decisions
+      ✔ full happy path: SUBMITTED -> APPROVED -> REPAIRED
+      ✔ service center can reject a claim with a reason
+      ✔ customer can submit a new claim after the old one is closed
+      ✔ reason is required when rejecting
+      ✔ shop and customer cannot make decisions
+      ✔ cannot mark a claim repaired before it is approved
+      ✔ cannot approve a rejected claim
+      ✔ cannot reject an approved claim
+      ✔ cannot change a repaired claim
+      ✔ cannot decide on a claim that does not exist
+    Edge cases and access control
+      ✔ rejects an empty product name or serial number
+      ✔ cannot issue a warranty to the zero address, the shop or the service center
+      ✔ cannot submit a claim on a warranty that does not exist
+      ✔ approve needs a reason and repair needs a note
+      ✔ an approved claim still blocks a new claim until it is repaired
+      ✔ a claim filed before expiry can still be finished after expiry
+      ✔ keeps the full claim history of a warranty and lists warranties by owner
+      ✔ view functions revert for ids that do not exist (including id 0)
+
+
+  34 passing (1s)
+

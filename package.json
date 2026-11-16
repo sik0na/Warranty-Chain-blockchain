@@ -1,0 +1,22 @@
+{
+  "name": "warranty-chain",
+  "version": "1.0.0",
+  "description": "WarrantyChain - product warranty management on blockchain (course prototype)",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "node": "hardhat node",
+    "deploy": "hardhat run scripts/deploy.js --network localhost",
+    "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "seed": "hardhat run scripts/seed.js --network localhost",
+    "time-travel": "hardhat run scripts/timeTravel.js --network localhost",
+    "frontend": "http-server frontend -p 8080 -c-1",
+    "build-demo": "node scripts/buildDemo.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.29.1",
+    "http-server": "^14.1.1"
+  }
+}

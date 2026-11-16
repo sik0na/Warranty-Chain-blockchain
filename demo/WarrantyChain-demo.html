@@ -1,0 +1,1192 @@
+<title>WarrantyChain — Product Warranty Management</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #253349;
+  font-size: 15px;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+
+
+header {
+  background: white;
+  border-bottom: 1px solid #dce2eb;
+  padding: 20px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-size: 23px;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+.brand span {
+  color: #253349;
+}
+
+.demo {
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 7px 12px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+
+main {
+  max-width: 1100px;
+  margin: 36px auto;
+  padding: 0 24px;
+}
+
+h1 {
+  font-size: 30px;
+  margin: 0 0 10px;
+}
+
+h2 {
+  font-size: 19px;
+  margin: 0;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+p {
+  color: #667085;
+  line-height: 1.6;
+}
+
+.muted {
+  color: #667085;
+}
+
+.small-text {
+  font-size: 12px;
+}
+
+.mono {
+  font-family: monospace;
+}
+
+.intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.intro p {
+  margin: 0;
+}
+
+.account {
+  background: white;
+  border: 1px solid #dce2eb;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid #dce2eb;
+  margin-bottom: 24px;
+  overflow-x: auto;
+}
+
+.tabs button {
+  border: 0;
+  background: transparent;
+  padding: 14px 20px;
+  color: #667085;
+  white-space: nowrap;
+}
+
+.tabs .active {
+  color: #2563eb;
+  border-bottom: 3px solid #2563eb;
+  font-weight: bold;
+}
+
+
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #dce2eb;
+  border-radius: 8px;
+  padding: 22px;
+}
+
+.section-gap {
+  margin-top: 24px;
+}
+
+.stat b {
+  display: block;
+  font-size: 29px;
+  margin-top: 12px;
+}
+
+.stat span {
+  color: #667085;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+
+
+.primary {
+  background: #2563eb;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 11px 16px;
+}
+
+.secondary {
+  background: white;
+  border: 1px solid #dce2eb;
+  border-radius: 5px;
+  padding: 10px 14px;
+  color: #344054;
+}
+
+.small {
+  padding: 7px 11px;
+  font-size: 13px;
+}
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th {
+  font-size: 12px;
+  color: #667085;
+  background: #f8fafc;
+}
+
+td,
+th {
+  padding: 15px 12px;
+  border-bottom: 1px solid #edf0f4;
+}
+
+td {
+  font-size: 14px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+
+.badge {
+  display: inline-block;
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.ACTIVE,
+.REPAIRED {
+  background: #ecfdf3;
+  color: #15803d;
+}
+
+.EXPIRED,
+.REJECTED {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.SUBMITTED {
+  background: #fff8e6;
+  color: #996b06;
+}
+
+
+.notice {
+  font-size: 13px;
+  margin-top: 20px;
+  padding: 14px;
+  background: #eef3fa;
+  border-radius: 5px;
+  color: #5a6980;
+}
+
+.empty {
+  text-align: center;
+  padding: 30px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+footer {
+  text-align: center;
+  color: #8290a4;
+  font-size: 12px;
+  padding: 30px;
+}
+
+
+
+dialog {
+  border: 1px solid #dce2eb;
+  border-radius: 8px;
+  width: 480px;
+  max-width: 94%;
+  padding: 26px;
+}
+
+dialog::backdrop {
+  background: #16233b66;
+}
+
+label {
+  display: block;
+  margin-top: 17px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #ccd4e0;
+  border-radius: 5px;
+  margin-top: 7px;
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.timeline {
+  border-left: 2px solid #dbe5f5;
+  padding-left: 18px;
+  margin: 20px 0;
+}
+
+.timeline p {
+  margin: 8px 0;
+  font-size: 13px;
+}
+
+.error {
+  color: #b91c1c;
+  font-size: 13px;
+}
+
+#toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #253349;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 6px;
+}
+
+
+
+</style>
+
+  <header>
+    <div class="brand">Warranty<span>Chain</span></div>
+    <span class="demo">Course prototype</span>
+  </header>
+
+  <main>
+    <div class="intro">
+      <div>
+        <h1>Product Warranty Management</h1>
+        <p>Keep warranties and repair claims in one place, on the blockchain.</p>
+      </div>
+      <div class="account">
+        Demo account: <b id="account">-</b><br>
+        <small id="address" class="muted mono"></small><br>
+        <button id="connect" class="primary small hidden">Connect MetaMask</button>
+      </div>
+    </div>
+
+    
+    <nav id="tabs" class="tabs" aria-label="Role">
+      <button data-tab="Alice" class="active">Customer (Alice)</button>
+      <button data-tab="Bob">Customer (Bob)</button>
+      <button data-tab="Shop">Shop</button>
+      <button data-tab="Service center">Service center</button>
+    </nav>
+
+    <div class="stats">
+      <div class="card stat"><span>Total warranties</span><b id="total">0</b></div>
+      <div class="card stat"><span>Active warranties</span><b id="active">0</b></div>
+      <div class="card stat"><span>Open claims</span><b id="open">0</b></div>
+    </div>
+
+    <section class="card">
+      <div class="heading">
+        <h2 id="section-title">My warranties</h2>
+        <button id="issue" class="primary hidden">+ Issue warranty</button>
+      </div>
+      <div id="content" class="table-wrap"><p class="empty">Loading from the blockchain...</p></div>
+    </section>
+
+    <section class="card section-gap">
+      <div class="heading">
+        <h2>Repair claims</h2>
+        <span class="muted small-text">Submitted → Approved → Repaired</span>
+      </div>
+      <div id="claims" class="table-wrap"></div>
+    </section>
+
+    <div class="notice">
+      <b>How this demo works:</b> The shop issues a warranty, the customer submits a claim, and the
+      service center reviews the repair. Every record is saved in the WarrantyChain smart contract, and
+      your wallet address decides your role. The contract itself checks who is allowed to do what.
+    </div>
+  </main>
+
+  <footer>
+    WarrantyChain · Web3 course project · Contract <span id="contract-address" class="mono"></span>
+  </footer>
+
+  
+  <dialog id="modal">
+    <form id="form">
+      <h2 id="modal-title"></h2>
+      <div id="fields"></div>
+      <p id="error" class="error" role="alert"></p>
+      <div class="actions">
+        <button type="button" id="cancel" class="secondary">Cancel</button>
+        <button class="primary" id="save">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" role="status" class="hidden"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
+  <script>
+// Online demo only (no MetaMask needed).
+// This file pretends to be the blockchain: it follows the same rules and error messages as
+// contracts/WarrantyChain.sol, and saves everything in the visitor's browser (localStorage).
+// It replaces contract-config.js, so app.js works without any changes.
+
+const CHAIN_ID = 31337; // makes app.js show the demo tabs
+const RPC_URL = "";
+const DEPLOY_BLOCK = 0;
+const CONTRACT_ADDRESS = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+const CONTRACT_ABI = [];
+
+const DEMO_ACCOUNTS = [
+  "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", // 0 shop
+  "0x70997970C51812dc3A010C7d01b50e0d17dc79C8", // 1 service center
+  "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC", // 2 Alice
+  "0x90F79bf6EB2c4f870365E785982E1f101E93b906", // 3 Bob
+];
+const SHOP = DEMO_ACCOUNTS[0];
+const SERVICE_CENTER = DEMO_ACCOUNTS[1];
+const STORAGE_KEY = "warrantychain-demo-v1";
+const DAY = 24 * 60 * 60;
+
+let chain = null;
+chain = loadChain(); // two lines, because sampleChain() also writes to chain
+
+// ---------- saving ----------
+
+function loadChain() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (saved) return saved;
+  } catch (err) {
+    // storage blocked: just start with the sample data
+  }
+  return sampleChain();
+}
+
+function saveChain() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(chain));
+  } catch (err) {
+    // storage blocked: changes only last until the page is closed
+  }
+}
+
+// ---------- the "contract" (same rules as WarrantyChain.sol) ----------
+
+function now() {
+  return Math.floor(Date.now() / 1000);
+}
+
+function fail(message) {
+  const error = new Error(message);
+  error.reason = message; // app.js shows err.reason
+  throw error;
+}
+
+function fakeHash() {
+  let hash = "0x";
+  for (let i = 0; i < 64; i++) hash += Math.floor(Math.random() * 16).toString(16);
+  return hash;
+}
+
+function emit(eventName, args) {
+  chain.blockNumber++;
+  chain.events.push({
+    eventName: eventName,
+    args: args,
+    blockNumber: chain.blockNumber,
+    index: 0,
+    transactionHash: fakeHash(),
+    timestamp: now(),
+  });
+}
+
+function registerProduct(sender, name, serialNumber) {
+  if (sender !== SHOP) fail("Only the shop can do this");
+  if (!name) fail("Product name is required");
+  if (!serialNumber) fail("Serial number is required");
+  if (chain.products.some((p) => p.serialNumber === serialNumber)) fail("Serial number already registered");
+
+  const id = chain.products.length + 1;
+  chain.products.push({ id: id, name: name, serialNumber: serialNumber, hasWarranty: false });
+  emit("ProductRegistered", { productId: id, name: name, serialNumber: serialNumber });
+}
+
+function issueWarranty(sender, productId, owner, expiresAt) {
+  productId = Number(productId);
+  if (sender !== SHOP) fail("Only the shop can do this");
+  if (productId < 1 || productId > chain.products.length) fail("Product does not exist");
+  if (chain.products[productId - 1].hasWarranty) fail("Product already has a warranty");
+  if (owner === SHOP || owner === SERVICE_CENTER) fail("Owner must be a customer");
+  if (expiresAt <= now()) fail("Expiry date must be in the future");
+
+  const id = chain.warranties.length + 1;
+  chain.warranties.push({
+    id: id,
+    productId: productId,
+    owner: owner,
+    issuedAt: now(),
+    expiresAt: expiresAt,
+    hasOpenClaim: false,
+  });
+  chain.products[productId - 1].hasWarranty = true;
+  emit("WarrantyIssued", { warrantyId: id, productId: productId, owner: owner, expiresAt: expiresAt });
+}
+
+function submitClaim(sender, warrantyId, description) {
+  const w = getWarranty(warrantyId);
+  if (sender !== w.owner) fail("Only the warranty owner can submit a claim");
+  if (now() > w.expiresAt) fail("Warranty has expired");
+  if (w.hasOpenClaim) fail("This warranty already has an open claim");
+  if (!description) fail("Please describe the problem");
+
+  const id = chain.claims.length + 1;
+  chain.claims.push({
+    id: id,
+    warrantyId: w.id,
+    customer: sender,
+    description: description,
+    status: 0, // SUBMITTED
+    decisionReason: "",
+    repairNote: "",
+    submittedAt: now(),
+  });
+  w.hasOpenClaim = true;
+  emit("ClaimSubmitted", { claimId: id, warrantyId: w.id, customer: sender, description: description });
+}
+
+function decideClaim(sender, claimId, newStatus, text) {
+  if (sender !== SERVICE_CENTER) fail("Only the service center can do this");
+  const c = getClaim(claimId);
+  const w = getWarranty(c.warrantyId);
+
+  if (newStatus === 1 || newStatus === 2) {
+    // approve or reject: only from SUBMITTED
+    if (c.status !== 0) fail(newStatus === 1 ? "Only submitted claims can be approved" : "Only submitted claims can be rejected");
+    if (!text) fail("A reason is required");
+    c.decisionReason = text;
+  } else {
+    // repaired: only from APPROVED
+    if (c.status !== 1) fail("Only approved claims can be marked repaired");
+    if (!text) fail("A repair note is required");
+    c.repairNote = text;
+  }
+
+  c.status = newStatus;
+  if (newStatus !== 1) w.hasOpenClaim = false; // rejected or repaired closes the claim
+
+  if (newStatus === 1) emit("ClaimApproved", { claimId: c.id, warrantyId: w.id, reason: text });
+  if (newStatus === 2) emit("ClaimRejected", { claimId: c.id, warrantyId: w.id, reason: text });
+  if (newStatus === 3) emit("ClaimRepaired", { claimId: c.id, warrantyId: w.id, repairNote: text });
+}
+
+function getProduct(id) {
+  const p = chain.products[Number(id) - 1];
+  if (!p) fail("Product does not exist");
+  return p;
+}
+
+function getWarranty(id) {
+  const w = chain.warranties[Number(id) - 1];
+  if (!w) fail("Warranty does not exist");
+  return w;
+}
+
+function getClaim(id) {
+  const c = chain.claims[Number(id) - 1];
+  if (!c) fail("Claim does not exist");
+  return c;
+}
+
+// ---------- sample data (same story as scripts/seed.js) ----------
+
+function sampleChain() {
+  chain = { blockNumber: 0, products: [], warranties: [], claims: [], events: [] };
+  const [shop, service, alice, bob] = DEMO_ACCOUNTS;
+
+  registerProduct(shop, "Sony WH-1000XM5 Headphones", "SONY-HP-0001");
+  registerProduct(shop, "Logitech MX Master 3 Mouse", "LOGI-MS-0042");
+  registerProduct(shop, "Kindle Paperwhite", "AMZ-KD-7781");
+  registerProduct(shop, "JBL Flip 6 Speaker", "JBL-SP-0310");
+
+  issueWarranty(shop, 1, alice, now() + 365 * DAY);
+  issueWarranty(shop, 2, alice, now() + 30 * DAY);
+  issueWarranty(shop, 3, bob, now() + 730 * DAY);
+  issueWarranty(shop, 4, bob, now() + DAY);
+  // pretend Bob bought the speaker last year, so this warranty is already expired
+  chain.warranties[3].issuedAt = now() - 395 * DAY;
+  chain.warranties[3].expiresAt = now() - 30 * DAY;
+  chain.events[chain.events.length - 1].args.expiresAt = chain.warranties[3].expiresAt;
+
+  submitClaim(bob, 3, "Screen flickers when turning pages");
+  decideClaim(service, 1, 1, "Display connector defect, covered");
+  decideClaim(service, 1, 3, "Replaced display cable");
+  submitClaim(alice, 1, "Left ear cup has no sound");
+
+  return chain;
+}
+
+// ---------- fake versions of the ethers.js objects that app.js uses ----------
+
+class DemoProvider {
+  constructor() {
+    this.pollingInterval = 0;
+  }
+  async getSigner(index) {
+    return { getAddress: async () => DEMO_ACCOUNTS[index] };
+  }
+  async getBlock() {
+    return { timestamp: now() };
+  }
+}
+
+class DemoContract {
+  constructor(address, abi, runner) {
+    this.runner = runner;
+    this.filters = {
+      WarrantyIssued: (warrantyId) => ({ eventName: "WarrantyIssued", warrantyId: warrantyId }),
+      ClaimSubmitted: (_, warrantyId) => ({ eventName: "ClaimSubmitted", warrantyId: warrantyId }),
+      ClaimApproved: (_, warrantyId) => ({ eventName: "ClaimApproved", warrantyId: warrantyId }),
+      ClaimRejected: (_, warrantyId) => ({ eventName: "ClaimRejected", warrantyId: warrantyId }),
+      ClaimRepaired: (_, warrantyId) => ({ eventName: "ClaimRepaired", warrantyId: warrantyId }),
+    };
+  }
+
+  // Runs a write function as the current account, like sending a transaction
+  async send(action) {
+    const sender = await this.runner.getAddress();
+    action(sender);
+    saveChain();
+    return { wait: async () => {} };
+  }
+
+  // write functions
+  registerProduct(name, serial) { return this.send((from) => registerProduct(from, name, serial)); }
+  issueWarranty(productId, owner, expiresAt) { return this.send((from) => issueWarranty(from, productId, owner, expiresAt)); }
+  submitClaim(warrantyId, text) { return this.send((from) => submitClaim(from, warrantyId, text)); }
+  approveClaim(claimId, reason) { return this.send((from) => decideClaim(from, claimId, 1, reason)); }
+  rejectClaim(claimId, reason) { return this.send((from) => decideClaim(from, claimId, 2, reason)); }
+  markRepaired(claimId, note) { return this.send((from) => decideClaim(from, claimId, 3, note)); }
+
+  // read functions
+  async shop() { return SHOP; }
+  async serviceCenter() { return SERVICE_CENTER; }
+  async productCount() { return chain.products.length; }
+  async warrantyCount() { return chain.warranties.length; }
+  async claimCount() { return chain.claims.length; }
+  async getProduct(id) { return getProduct(id); }
+  async getWarranty(id) { return getWarranty(id); }
+  async getClaim(id) { return getClaim(id); }
+
+  async queryFilter(filter) {
+    return chain.events
+      .filter((ev) => ev.eventName === filter.eventName && ev.args.warrantyId === Number(filter.warrantyId))
+      .map((ev) => ({ ...ev, getBlock: async () => ({ timestamp: ev.timestamp }) }));
+  }
+}
+
+// Swap in the fake objects, keep the real ethers helpers (isAddress, getAddress, ...)
+window.ethers = Object.assign({}, window.ethers, { JsonRpcProvider: DemoProvider, Contract: DemoContract });
+
+// ---------- small changes to the page for the online demo ----------
+
+document.querySelector(".demo").textContent = "Online demo";
+document.querySelector(".notice").innerHTML =
+  "<b>How this demo works:</b> Switch tabs to issue a warranty, submit a claim, and review a repair. " +
+  "This online demo simulates the WarrantyChain smart contract in your browser with the same rules, " +
+  "so no wallet is needed. Your changes are saved only in your own browser. " +
+  '<button id="reset-demo" class="secondary small">Reset demo data</button>';
+
+document.getElementById("reset-demo").onclick = () => {
+  chain = sampleChain();
+  saveChain();
+  loadData(); // from app.js
+  toast("Demo data reset."); // from app.js
+};
+
+</script>
+  <script>
+
+// CHAIN_ID 31337 = local Hardhat node (demo tabs), anything else = public network (MetaMask)
+const IS_LOCAL = typeof CHAIN_ID === "undefined" || CHAIN_ID === 31337;
+const provider = new ethers.JsonRpcProvider(IS_LOCAL ? "http://127.0.0.1:8545" : RPC_URL);
+if (IS_LOCAL) provider.pollingInterval = 500;
+
+const ACCOUNTS = {
+  Alice: 2,
+  Bob: 3,
+  Shop: 0,
+  "Service center": 1,
+};
+
+const STATUS = ["SUBMITTED", "APPROVED", "REJECTED", "REPAIRED"];
+
+let contract;
+let myAddress; 
+let role;
+let currentTab = "Alice";
+
+let warranties = []; 
+let claims = [];
+let modalAction = null;
+
+const $ = (id) => document.getElementById(id);
+
+
+// signer = null means "not connected yet": the visitor can only look
+async function useAccount(signer, name) {
+  contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer || provider);
+  myAddress = signer ? await signer.getAddress() : null;
+
+  if (!myAddress) {
+    role = "Visitor";
+  } else if (myAddress === (await contract.shop())) {
+    role = "Shop";
+  } else if (myAddress === (await contract.serviceCenter())) {
+    role = "Service center";
+  } else {
+    role = "Customer";
+  }
+
+  $("account").textContent = !name || name === role ? role : name + " (" + role + ")";
+  $("address").textContent = myAddress || "Not connected";
+
+  await loadData();
+}
+
+// Local demo: each tab is one of the Hardhat test accounts
+async function switchAccount(tabName) {
+  currentTab = tabName;
+  const signer = await provider.getSigner(ACCOUNTS[tabName]);
+  await useAccount(signer, tabName);
+}
+
+// Public version: everyone uses their own MetaMask wallet
+async function connectMetaMask() {
+  if (!window.ethereum) {
+    toast("Please install MetaMask first.");
+    return;
+  }
+  try {
+    await window.ethereum.request({ method: "eth_requestAccounts" });
+    await window.ethereum.request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: "0x" + CHAIN_ID.toString(16) }],
+    });
+
+    const signer = await new ethers.BrowserProvider(window.ethereum).getSigner();
+    await useAccount(signer);
+    $("connect").classList.add("hidden");
+
+    window.ethereum.on("accountsChanged", () => location.reload());
+    window.ethereum.on("chainChanged", () => location.reload());
+  } catch (err) {
+    toast(errorText(err));
+  }
+}
+
+async function loadData() {
+  
+    const latestBlock = await provider.getBlock("latest");
+    const now = latestBlock.timestamp;
+  
+    warranties = [];
+    const warrantyCount = await contract.warrantyCount();
+    for (let id = 1; id <= warrantyCount; id++) {
+      const w = await contract.getWarranty(id);
+      const p = await contract.getProduct(w.productId);
+      warranties.push({
+        id: id,
+        product: p.name,
+        serial: p.serialNumber,
+        owner: w.owner,
+        expiresAt: Number(w.expiresAt),
+        active: now <= Number(w.expiresAt),
+        hasOpenClaim: w.hasOpenClaim,
+      });
+  }
+
+  claims = [];
+  const claimCount = await contract.claimCount();
+  for (let id = 1; id <= claimCount; id++) {
+    const c = await contract.getClaim(id);
+    claims.push({
+      id: id,
+      warrantyId: Number(c.warrantyId),
+      issue: c.description,
+      status: STATUS[Number(c.status)],
+      reason: c.decisionReason,
+      repairNote: c.repairNote,
+    });
+  }
+
+  render();
+}
+
+
+function render() {
+  
+  let list = warranties;
+  if (role === "Customer") {
+    list = warranties.filter((w) => w.owner === myAddress);
+  }
+
+  
+  const visibleClaims = claims.filter((c) => list.some((w) => w.id === c.warrantyId));
+  const openClaims = visibleClaims.filter((c) => c.status === "SUBMITTED" || c.status === "APPROVED");
+
+  
+  $("total").textContent = list.length;
+  $("active").textContent = list.filter((w) => w.active).length;
+  $("open").textContent = openClaims.length;
+
+  $("issue").classList.toggle("hidden", role !== "Shop");
+  $("section-title").textContent = role === "Customer" ? "My warranties" : "Registered warranties";
+
+  renderWarranties(list);
+  renderClaims(visibleClaims);
+}
+
+function renderWarranties(list) {
+  if (list.length === 0) {
+    $("content").innerHTML = '<p class="empty">No warranties yet. The shop can issue a warranty to get started.</p>';
+    return;
+  }
+
+  let rows = "";
+  for (const w of list) {
+    let actions = `<button class="secondary small" data-history="${w.id}">History</button> `;
+    if (role === "Customer" && w.active) {
+      if (w.hasOpenClaim) {
+        actions += "<small>Claim in progress</small>";
+      } else {
+        actions += `<button class="primary small" data-claim="${w.id}">Request repair</button>`;
+      }
+    }
+
+    rows += `
+      <tr>
+        <td><b>${escapeHtml(w.product)}</b><br><small class="muted">${escapeHtml(w.serial)}</small></td>
+        <td class="mono" title="${w.owner}">${shortAddress(w.owner)}</td>
+        <td>${formatDate(w.expiresAt)}</td>
+        <td>${badge(w.active ? "ACTIVE" : "EXPIRED")}</td>
+        <td>${actions}</td>
+      </tr>`;
+  }
+
+  $("content").innerHTML = `
+    <table>
+      <thead>
+        <tr><th>PRODUCT / REFERENCE</th><th>OWNER</th><th>EXPIRY DATE</th><th>STATUS</th><th>ACTIONS</th></tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+function renderClaims(list) {
+  if (list.length === 0) {
+    $("claims").innerHTML = `
+      <div class="empty">
+        <h3>No repair claims yet</h3>
+        <p>Claims will appear here when a customer requests a repair.</p>
+      </div>`;
+    return;
+  }
+
+  let rows = "";
+  for (const c of list) {
+    const w = warranties.find((w) => w.id === c.warrantyId);
+
+    
+    let notes = "";
+    if (c.reason) notes += `<br><small class="muted">Reason: ${escapeHtml(c.reason)}</small>`;
+    if (c.repairNote) notes += `<br><small class="muted">Repair: ${escapeHtml(c.repairNote)}</small>`;
+
+    
+    let actions = `<button class="secondary small" data-history="${w.id}">History</button>`;
+    if (role === "Service center" && c.status === "SUBMITTED") {
+      actions = `
+        <button class="primary small" data-decision="${c.id}" data-state="APPROVED">Approve</button>
+        <button class="secondary small" data-decision="${c.id}" data-state="REJECTED">Reject</button>`;
+    } else if (role === "Service center" && c.status === "APPROVED") {
+      actions = `<button class="primary small" data-decision="${c.id}" data-state="REPAIRED">Complete repair</button>`;
+    }
+
+    rows += `
+      <tr>
+        <td><b>#C${String(c.id).padStart(3, "0")}</b><br>${escapeHtml(w.product)}</td>
+        <td>${escapeHtml(c.issue)}${notes}</td>
+        <td>${badge(c.status)}</td>
+        <td>${actions}</td>
+      </tr>`;
+  }
+
+  $("claims").innerHTML = `
+    <table>
+      <thead>
+        <tr><th>CLAIM / PRODUCT</th><th>ISSUE</th><th>STATUS</th><th>ACTIONS</th></tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+
+function field(label, name, type = "text", value = "") {
+  return `<label>${label}<input name="${name}" type="${type}" value="${value}" required></label>`;
+}
+
+function showModal(title, fieldsHtml, action) {
+  modalAction = action;
+  $("modal-title").textContent = title;
+  $("fields").innerHTML = fieldsHtml;
+  $("error").textContent = "";
+  $("save").classList.toggle("hidden", action === null); 
+  $("save").disabled = false;
+  $("save").textContent = "Save";
+  $("cancel").textContent = action === null ? "Close" : "Cancel";
+  $("modal").showModal();
+}
+
+function openIssueForm() {
+  const aliceAddress = IS_LOCAL ? "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC" : "";
+  showModal(
+    "Issue a warranty",
+    field("Product name", "product") +
+      field("Product reference / serial number", "serial") +
+      field("Customer wallet address", "owner", "text", aliceAddress) +
+      field("Warranty expiry", "expiry", "date"),
+    { type: "issue" }
+  );
+}
+
+function openClaimForm(warrantyId) {
+  showModal(
+    "Request a repair",
+    `<label>Describe the problem
+      <textarea name="issue" required maxlength="500" placeholder="For example: the left headphone stopped working."></textarea>
+    </label>`,
+    { type: "claim", id: warrantyId }
+  );
+}
+
+function openDecisionForm(claimId, state) {
+  let title = "Reject claim";
+  if (state === "APPROVED") title = "Approve claim";
+  if (state === "REPAIRED") title = "Complete repair";
+
+  const label = state === "REPAIRED" ? "Repair notes" : "Decision reason";
+  showModal(
+    title,
+    `<label>${label}<textarea name="reason" required maxlength="500"></textarea></label>`,
+    { type: "decision", id: claimId, state: state }
+  );
+}
+
+
+async function openHistory(warrantyId) {
+  const w = warranties.find((x) => x.id === warrantyId);
+  showModal(
+    "Warranty history",
+    `<p><b>${escapeHtml(w.product)}</b> · ${escapeHtml(w.serial)}</p>
+     <div class="timeline" id="timeline"><p>Loading from the blockchain...</p></div>`,
+    null
+  );
+
+  const filters = [
+    contract.filters.WarrantyIssued(warrantyId),
+    contract.filters.ClaimSubmitted(null, warrantyId),
+    contract.filters.ClaimApproved(null, warrantyId),
+    contract.filters.ClaimRejected(null, warrantyId),
+    contract.filters.ClaimRepaired(null, warrantyId),
+  ];
+  let events = [];
+  for (const filter of filters) {
+    const found = await contract.queryFilter(filter, DEPLOY_BLOCK);
+    events = events.concat(found);
+  }
+
+
+  events.sort((a, b) => a.blockNumber - b.blockNumber || a.index - b.index);
+
+  let html = "";
+  for (const ev of events) {
+    const block = await ev.getBlock();
+    html += `<p>
+      <b>${formatDate(block.timestamp)}</b><br>
+      ${describeEvent(ev)}<br>
+      <small class="muted mono">tx ${ev.transactionHash.slice(0, 18)}...</small>
+    </p>`;
+  }
+  $("timeline").innerHTML = html;
+}
+
+function describeEvent(ev) {
+  const a = ev.args;
+  const claimName = a.claimId ? "#C" + String(a.claimId).padStart(3, "0") : "";
+
+  if (ev.eventName === "WarrantyIssued") {
+    return "Warranty issued by the shop to " + shortAddress(a.owner);
+  }
+  if (ev.eventName === "ClaimSubmitted") {
+    return `Claim ${claimName} submitted: ${escapeHtml(a.description)}`;
+  }
+  if (ev.eventName === "ClaimApproved") {
+    return `Claim ${claimName} approved: ${escapeHtml(a.reason)}`;
+  }
+  if (ev.eventName === "ClaimRejected") {
+    return `Claim ${claimName} rejected: ${escapeHtml(a.reason)}`;
+  }
+  if (ev.eventName === "ClaimRepaired") {
+    return `Claim ${claimName} repaired: ${escapeHtml(a.repairNote)}`;
+  }
+  return ev.eventName;
+}
+
+
+async function saveForm(event) {
+  event.preventDefault();
+  if (!modalAction) return;
+
+  const form = Object.fromEntries(new FormData(event.target));
+  $("error").textContent = "";
+  $("save").disabled = true;
+  $("save").textContent = "Waiting for blockchain...";
+
+  try {
+    if (modalAction.type === "issue") {
+      await issueWarranty(form);
+    } else if (modalAction.type === "claim") {
+      await sendAndWait(contract.submitClaim(modalAction.id, form.issue.trim()));
+    } else if (modalAction.type === "decision") {
+      const reason = form.reason.trim();
+      if (modalAction.state === "APPROVED") {
+        await sendAndWait(contract.approveClaim(modalAction.id, reason));
+      } else if (modalAction.state === "REJECTED") {
+        await sendAndWait(contract.rejectClaim(modalAction.id, reason));
+      } else {
+        await sendAndWait(contract.markRepaired(modalAction.id, reason));
+      }
+    }
+
+    $("modal").close();
+    toast("Saved on the blockchain.");
+    await loadData();
+  } catch (err) {
+
+    $("error").textContent = errorText(err);
+  }
+
+  $("save").disabled = false;
+  $("save").textContent = "Save";
+}
+
+
+async function issueWarranty(form) {
+  
+  if (!ethers.isAddress(form.owner.trim())) {
+    throw new Error("Enter a valid 42-character wallet address.");
+  }
+  const owner = ethers.getAddress(form.owner.trim());
+  if (owner === (await contract.shop()) || owner === (await contract.serviceCenter())) {
+    throw new Error("The owner must be a customer, not the shop or service center.");
+  }
+
+
+  const expiresAt = Math.floor(new Date(form.expiry + "T23:59:59Z").getTime() / 1000);
+  const latestBlock = await provider.getBlock("latest");
+  if (expiresAt <= latestBlock.timestamp) {
+    throw new Error("Choose a future expiry date.");
+  }
+
+  await sendAndWait(contract.registerProduct(form.product.trim(), form.serial.trim()));
+  const productId = await contract.productCount();
+  await sendAndWait(contract.issueWarranty(productId, owner, expiresAt));
+}
+
+async function sendAndWait(transactionPromise) {
+  const tx = await transactionPromise;
+  await tx.wait();
+}
+
+
+function toast(text) {
+  $("toast").textContent = text;
+  $("toast").classList.remove("hidden");
+  setTimeout(() => $("toast").classList.add("hidden"), 3500);
+}
+
+function badge(status) {
+  return `<span class="badge ${status}">${status}</span>`;
+}
+
+function formatDate(timestamp) {
+  return new Date(timestamp * 1000).toISOString().slice(0, 10); 
+}
+
+function shortAddress(address) {
+  return address.slice(0, 6) + "…" + address.slice(-4);
+}
+
+function errorText(err) {
+  return err.reason || err.shortMessage || err.message;
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+document.querySelectorAll("[data-tab]").forEach((button) => {
+  button.onclick = () => {
+    document.querySelectorAll("[data-tab]").forEach((b) => b.classList.toggle("active", b === button));
+    switchAccount(button.dataset.tab);
+  };
+});
+
+$("issue").onclick = openIssueForm;
+$("connect").onclick = connectMetaMask;
+$("cancel").onclick = () => $("modal").close();
+$("form").onsubmit = saveForm;
+
+
+document.addEventListener("click", (e) => {
+  const button = e.target.closest("button");
+  if (!button) return;
+
+  if (button.dataset.claim) openClaimForm(Number(button.dataset.claim));
+  if (button.dataset.decision) openDecisionForm(Number(button.dataset.decision), button.dataset.state);
+  if (button.dataset.history) openHistory(Number(button.dataset.history));
+});
+
+
+if (typeof CONTRACT_ADDRESS === "undefined") {
+  $("content").innerHTML = '<p class="empty">contract-config.js is missing. Run <b>npm run deploy</b> first.</p>';
+} else {
+  $("contract-address").textContent = shortAddress(CONTRACT_ADDRESS);
+
+  let start;
+  if (IS_LOCAL) {
+    start = switchAccount(currentTab);
+  } else {
+    $("tabs").classList.add("hidden");
+    $("connect").classList.remove("hidden");
+    // link to Etherscan so anyone can check the records themselves
+    $("contract-address").innerHTML =
+      `<a href="https://sepolia.etherscan.io/address/${CONTRACT_ADDRESS}" target="_blank">${shortAddress(CONTRACT_ADDRESS)}</a>`;
+    start = useAccount(null);
+  }
+
+  start.catch(() => {
+    $("content").innerHTML = IS_LOCAL
+      ? '<p class="empty">Cannot connect to the blockchain. Run <b>npm run node</b> and <b>npm run deploy</b>.</p>'
+      : '<p class="empty">Cannot connect to the blockchain. Please try again later.</p>';
+  });
+}
+
+</script>

@@ -1,0 +1,349 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #253349;
+  font-size: 15px;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+
+
+header {
+  background: white;
+  border-bottom: 1px solid #dce2eb;
+  padding: 20px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-size: 23px;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+.brand span {
+  color: #253349;
+}
+
+.demo {
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 7px 12px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+
+main {
+  max-width: 1100px;
+  margin: 36px auto;
+  padding: 0 24px;
+}
+
+h1 {
+  font-size: 30px;
+  margin: 0 0 10px;
+}
+
+h2 {
+  font-size: 19px;
+  margin: 0;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+p {
+  color: #667085;
+  line-height: 1.6;
+}
+
+.muted {
+  color: #667085;
+}
+
+.small-text {
+  font-size: 12px;
+}
+
+.mono {
+  font-family: monospace;
+}
+
+.intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.intro p {
+  margin: 0;
+}
+
+.account {
+  background: white;
+  border: 1px solid #dce2eb;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid #dce2eb;
+  margin-bottom: 24px;
+  overflow-x: auto;
+}
+
+.tabs button {
+  border: 0;
+  background: transparent;
+  padding: 14px 20px;
+  color: #667085;
+  white-space: nowrap;
+}
+
+.tabs .active {
+  color: #2563eb;
+  border-bottom: 3px solid #2563eb;
+  font-weight: bold;
+}
+
+
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #dce2eb;
+  border-radius: 8px;
+  padding: 22px;
+}
+
+.section-gap {
+  margin-top: 24px;
+}
+
+.stat b {
+  display: block;
+  font-size: 29px;
+  margin-top: 12px;
+}
+
+.stat span {
+  color: #667085;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+
+
+.primary {
+  background: #2563eb;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 11px 16px;
+}
+
+.secondary {
+  background: white;
+  border: 1px solid #dce2eb;
+  border-radius: 5px;
+  padding: 10px 14px;
+  color: #344054;
+}
+
+.small {
+  padding: 7px 11px;
+  font-size: 13px;
+}
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th {
+  font-size: 12px;
+  color: #667085;
+  background: #f8fafc;
+}
+
+td,
+th {
+  padding: 15px 12px;
+  border-bottom: 1px solid #edf0f4;
+}
+
+td {
+  font-size: 14px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+
+.badge {
+  display: inline-block;
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.ACTIVE,
+.REPAIRED {
+  background: #ecfdf3;
+  color: #15803d;
+}
+
+.EXPIRED,
+.REJECTED {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.SUBMITTED {
+  background: #fff8e6;
+  color: #996b06;
+}
+
+
+.notice {
+  font-size: 13px;
+  margin-top: 20px;
+  padding: 14px;
+  background: #eef3fa;
+  border-radius: 5px;
+  color: #5a6980;
+}
+
+.empty {
+  text-align: center;
+  padding: 30px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+footer {
+  text-align: center;
+  color: #8290a4;
+  font-size: 12px;
+  padding: 30px;
+}
+
+
+
+dialog {
+  border: 1px solid #dce2eb;
+  border-radius: 8px;
+  width: 480px;
+  max-width: 94%;
+  padding: 26px;
+}
+
+dialog::backdrop {
+  background: #16233b66;
+}
+
+label {
+  display: block;
+  margin-top: 17px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #ccd4e0;
+  border-radius: 5px;
+  margin-top: 7px;
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.timeline {
+  border-left: 2px solid #dbe5f5;
+  padding-left: 18px;
+  margin: 20px 0;
+}
+
+.timeline p {
+  margin: 8px 0;
+  font-size: 13px;
+}
+
+.error {
+  color: #b91c1c;
+  font-size: 13px;
+}
+
+#toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #253349;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 6px;
+}
+
+

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WarrantyChain — Product Warranty Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="brand">Warranty<span>Chain</span></div>
+    <span class="demo">Course prototype</span>
+  </header>
+
+  <main>
+    <div class="intro">
+      <div>
+        <h1>Product Warranty Management</h1>
+        <p>Keep warranties and repair claims in one place, on the blockchain.</p>
+      </div>
+      <div class="account">
+        Demo account: <b id="account">-</b><br>
+        <small id="address" class="muted mono"></small><br>
+        <button id="connect" class="primary small hidden">Connect MetaMask</button>
+      </div>
+    </div>
+
+    
+    <nav id="tabs" class="tabs" aria-label="Role">
+      <button data-tab="Alice" class="active">Customer (Alice)</button>
+      <button data-tab="Bob">Customer (Bob)</button>
+      <button data-tab="Shop">Shop</button>
+      <button data-tab="Service center">Service center</button>
+    </nav>
+
+    <div class="stats">
+      <div class="card stat"><span>Total warranties</span><b id="total">0</b></div>
+      <div class="card stat"><span>Active warranties</span><b id="active">0</b></div>
+      <div class="card stat"><span>Open claims</span><b id="open">0</b></div>
+    </div>
+
+    <section class="card">
+      <div class="heading">
+        <h2 id="section-title">My warranties</h2>
+        <button id="issue" class="primary hidden">+ Issue warranty</button>
+      </div>
+      <div id="content" class="table-wrap"><p class="empty">Loading from the blockchain...</p></div>
+    </section>
+
+    <section class="card section-gap">
+      <div class="heading">
+        <h2>Repair claims</h2>
+        <span class="muted small-text">Submitted → Approved → Repaired</span>
+      </div>
+      <div id="claims" class="table-wrap"></div>
+    </section>
+
+    <div class="notice">
+      <b>How this demo works:</b> The shop issues a warranty, the customer submits a claim, and the
+      service center reviews the repair. Every record is saved in the WarrantyChain smart contract, and
+      your wallet address decides your role. The contract itself checks who is allowed to do what.
+    </div>
+  </main>
+
+  <footer>
+    WarrantyChain · Web3 course project · Contract <span id="contract-address" class="mono"></span>
+  </footer>
+
+  
+  <dialog id="modal">
+    <form id="form">
+      <h2 id="modal-title"></h2>
+      <div id="fields"></div>
+      <p id="error" class="error" role="alert"></p>
+      <div class="actions">
+        <button type="button" id="cancel" class="secondary">Cancel</button>
+        <button class="primary" id="save">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" role="status" class="hidden"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
+  <script src="contract-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
